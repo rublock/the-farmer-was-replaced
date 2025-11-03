@@ -8,25 +8,25 @@ do_a_flip()
 while True:
 
 	# Столбцы
-	for i in range(get_world_size()):
+	for x in range(get_world_size()):
 
 		# Ячейки
-		for j in range(get_world_size()):
+		for y in range(get_world_size()):
 
 			if can_harvest():
 				harvest()
 
 			if get_entity_type() == Entities.Grass:
 				till()
-			
-			if i < 4 and j > 3: # Верхний левый угол
-				plant(Entities.Tree)
-			elif i > 3 and j > 3: # Верхний правый угол
-				plant(Entities.Pumpkin)
-			elif i < 4 and j < 4: # Нижний левый угол
+
+			if x <= get_world_size() / 2 - 1 and y <= get_world_size() / 2 - 1:
 				plant(Entities.Carrot)
-			elif i > 3 and j < 4: # Нижний правый угол
+			elif x >= get_world_size() / 2 and y <= get_world_size() / 2 - 1:
 				plant(Entities.Cactus)
+			elif x <= get_world_size() / 2 - 1 and y >= get_world_size() / 2:
+				plant(Entities.Tree)
+			elif x >= get_world_size() / 2 and y >= get_world_size() / 2:
+				plant(Entities.Pumpkin)
 			
 			if num_items(Items.Water) > 15000:
 				use_item(Items.Water)
@@ -40,8 +40,9 @@ while True:
 
 			move(North)
 			
-			change_my_hat(i)
+			change_my_hat(y)
 
 		move(East)
 
+	clear()
 	do_a_flip()
