@@ -7,10 +7,8 @@ do_a_flip()
 
 while True:
 
-	# Столбцы
 	for x in range(get_world_size()):
 
-		# Ячейки
 		for y in range(get_world_size()):
 
 			if can_harvest():
@@ -28,7 +26,7 @@ while True:
 			elif x >= get_world_size() / 2 and y >= get_world_size() / 2:
 				plant(Entities.Pumpkin)
 			
-			if num_items(Items.Water) > 15000:
+			if num_items(Items.Water) > 10000:
 				use_item(Items.Water)
 				
 			elif get_entity_type() == Entities.Dead_Pumpkin:
@@ -44,5 +42,5 @@ while True:
 
 		move(East)
 
-	clear()
+	# clear() # Для сбора травы
 	do_a_flip()
